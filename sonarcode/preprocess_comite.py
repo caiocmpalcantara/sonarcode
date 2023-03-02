@@ -1,6 +1,7 @@
 from __future__ import division
 import warnings
-from scipy.signal import decimate, hanning, convolve, spectrogram, lfilter, cheby2, butter, cheb2ord, hilbert
+from scipy.signal import decimate, convolve, spectrogram, lfilter, cheby2, butter, cheb2ord, hilbert
+from scipy.signal.windows import hann as hanning
 from librosa import stft, fft_frequencies, frames_to_time
 import numpy as np
 import math
