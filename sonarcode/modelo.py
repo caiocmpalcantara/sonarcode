@@ -3,10 +3,12 @@ import keras
 from keras.models import Model, Sequential
 from tensorflow.keras.optimizers import Adam
 #from keras.models import Input, Model, Sequential
-from tensorflow.keras.models import Input, Model, Sequential
+#from tensorflow.keras.models import Input, Model, Sequential
+from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.layers import Input
 from keras.layers import LSTM, Dense, Dropout, Flatten, Reshape, Conv1D, Conv2D, Concatenate, Add
-from keras.utils.vis_utils import plot_model
+#from keras.utils.vis_utils import plot_model
+from tensorflow.keras.utils import plot_model
 
 
 def modelolstm(n_timesteps, n_features, n_outputs, model_config):
