@@ -20,7 +20,8 @@ def sp_index(y_true, y_pred):
 
 # plotar matriz confusão
 def plota_confusao(model,x, y):
-  y_pred = model.predict_classes(x).argmax(axis=-1)
+  y_pred_prob = model.predict(x)
+  y_pred = y_pred_prob.argmax(axis=-1)
   fig, ax = plt.subplots()
   confusao = confusion_matrix(y, y_pred)
   sns.heatmap(confusao, annot=True, 
