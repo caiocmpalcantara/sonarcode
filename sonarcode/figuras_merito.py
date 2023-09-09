@@ -25,7 +25,7 @@ def plota_confusao(model,x, y):
   confusao = confusion_matrix(y, y_pred)
   sns.heatmap(confusao, annot=True, 
             ax=ax, fmt='d', cmap='Reds')
-  ax.set_title("Matriz de Confusão", fontsize=18)
+  ax.set_title("Confusion Matrix", fontsize=18)
   ax.set_ylabel("True label")
   ax.set_xlabel("Predicted Label")
   plt.tight_layout()
