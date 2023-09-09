@@ -1,4 +1,5 @@
 import numpy as np
+import seaborn as sns
 from sklearn.metrics import recall_score
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
