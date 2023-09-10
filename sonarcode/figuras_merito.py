@@ -32,8 +32,7 @@ def plota_confusao(model,x, y, print):
     ax.set_ylabel("True label")
     ax.set_xlabel("Predicted Label")
     plt.tight_layout()
-  elif print == 0:
-      return confusao
+  return confusao
 
 def plot_confusion_matrix(cm, cms,  classes,
                           cmap=plt.cm.Blues):
