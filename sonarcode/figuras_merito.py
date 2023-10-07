@@ -93,10 +93,11 @@ def plot_boxplot(sp_values_per_model_NN1, sp_values_per_model_NN2, model_labels)
     #  and so on.
 
     # Shuffle the vectors
+    index_suffled_vector = []
     try
         for i in range(len(sp_values_per_model_NN1)):
-            index_suffled_vector[i] = sp_values_per_model_NN1[i]
-            index_suffled_vector[i+1] = sp_values_per_model_NN2[i]
+            index_suffled_vector.append(sp_values_per_model_NN1[i])
+            index_suffled_vector.append(sp_values_per_model_NN2[i])
     except Exception as e:
         print("Error occurred: ", str(e))
     
