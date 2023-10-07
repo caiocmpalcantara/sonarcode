@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report
 from sklearn.preprocessing import LabelBinarizer
 from keras.models import Sequential
 import matplotlib.pyplot as plt
-
+import math
 
 # indice sp
 def sp_index(y_true, y_pred):
@@ -85,8 +85,39 @@ def curvalearnvalid(train_history, path):
   plt.legend(['train', 'valid'], loc='upper left')
   plt.savefig(str(path)+'_loss.png')
   plt.close()
-  
-  
+
+def plot_boxplot(sp_values_per_model_NN1, sp_values_per_model_NN2, model_labels):
+    # Create a box plot for Nested k-Fold CV of two models
+    #  The idea is to compare this models in SP value in the test fold
+    #  and then plot the two models side-by-side per fold, e.g., Fold 1 LSTM; Fold 1 BLSTM; ...,
+    #  and so on.
+
+    # Shuffle the vectors
+    try
+        for i in range(len(sp_values_per_model_NN1))
+            index_suffled_vector[i] = sp_values_per_model_NN1[i]
+            index_suffled_vector[i+1] = sp_values_per_model_NN2[i]
+    except Exception as e:
+        print("Error occurred: ", str(e))
+    
+    # Create a list of labels for the x-axis
+    
+    fold_numbers = [f'Fold {ceil((i+1)/2)} {model_labels[i%2]}' for i in range(len(index_suffled_vector))]
+
+    # Create the boxplot
+    plt.boxplot(index_shuffled_vector, labels=fold_numbers, vert=True)  # vert=True for vertical labels
+
+    # Set labels and title
+    plt.xlabel('Test Fold and Model')
+    plt.ylabel('Accuracy')
+    plt.title('Accuracy Distributions for Each Test Fold and Model')
+
+    # Rotate x-axis labels for better visibility
+    plt.xticks(rotation=90)
+
+    # Show the plot (if you want to display it immediately)
+    plt.show()
+
 def sitrep(acc_fold, loss_fold, val_fold, sp_fold, best_model, scores, sp, out):
   print('------------------------------------------------------------------------')
   print('Resultado dos folds')
