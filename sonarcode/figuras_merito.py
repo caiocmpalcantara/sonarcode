@@ -94,7 +94,7 @@ def plot_boxplot(sp_values_per_model_NN1, sp_values_per_model_NN2, model_labels)
 
     # Shuffle the vectors
     index_suffled_vector = []
-    try
+    try:
         for i in range(len(sp_values_per_model_NN1)):
             index_suffled_vector.append(sp_values_per_model_NN1[i])
             index_suffled_vector.append(sp_values_per_model_NN2[i])
