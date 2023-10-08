@@ -3,6 +3,8 @@ import pickle
 import pandas as pd
 import pandas
 import matplotlib.pyplot as plt
+import numpy as np
+from sonarcode.figuras_merito import sp_index, plota_confusao
 
 class Caminho:
   def __init__(self):
@@ -171,3 +173,31 @@ def criar_pastas(path_config, pretrain_config, train_config, lofar_config,
                                         +'_decimate_'+str(lofar_config.decimate)) for x in allender]
   
   return [x[x.index('window'):] if dataset_config.tipo =="normal" else x[x.index('comite'):] for x in outender]
+
+
+def evaluate_CM_and_SP_per_model_and_save(models_list, x, y_true, models_folder):
+  # Use a 'models_list', input data 'x', and input label 'y_true' to evaluate the
+  # Confusion Matrix (CM) in values (without print), and the Sum-Product (SP)
+  # per model in the 'models_list' and save the evaluated arrays containing the
+  # CM and SP values in a 'models_folder'
+  print_cm = false
+
+  cm_per_model = []
+  SP_per_model = []
+  
+  for model in models_list:
+    # Fist evaluate CM and SP per model
+    cm, y_pred = plota_confusao(lstm_model, x, y_true, print_cm)
+    SP = sp_index(y_true, y_pred)
+  
+    cm_per_model.append(cm)
+    SP_per_model.append(SP)
+
+  # Save for Models
+  save_name_cm = f'{model_folder}CM_per_model.npz'
+  save_name_SP = f'{model_folder}SP_per_model.npz'
+  
+  np.savez(save_name_cm, *cm_per_model)
+  np.savez(save_name_SP, *SP_per_model)
+
+  return cm_per_model, SP_per_model
