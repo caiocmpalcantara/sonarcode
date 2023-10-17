@@ -35,13 +35,13 @@ def plota_confusao(model,x, y, print):
   return confusao, y_pred
 
 def plot_confusion_matrix(cm, cms,  classes,
-                          cmap=plt.cm.Blues, normalize):
+                          cmap=plt.cm.Blues, normalizar):
     """
     This function prints and plots the confusion matrix.
     Normalization can be applied by setting `normalize=True`.
     """
 
-    if normalize:
+    if normalizar:
         cm = cm.astype(float)
         cms = cms.astype(float)
         ncm = cm
@@ -68,7 +68,7 @@ def plot_confusion_matrix(cm, cms,  classes,
                               
     for i in range(ncm.shape[0]):
         for j in range(ncm.shape[1]):
-            if normalize:
+            if normalizar:
                 print_str = '{0:.2f}%'.format(ncm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(ncms[i, j])
             else:
                 print_str = '{0:.1f}'.format(ncm[i, j]) + '\n$\pm$' + '{0:.1f}'.format(ncms[i, j])
