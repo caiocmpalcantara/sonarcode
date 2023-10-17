@@ -35,25 +35,41 @@ def plota_confusao(model,x, y, print):
   return confusao, y_pred
 
 def plot_confusion_matrix(cm, cms,  classes,
-                          cmap=plt.cm.Blues):
+                          cmap=plt.cm.Blues, normalize):
     """
     This function prints and plots the confusion matrix.
     Normalization can be applied by setting `normalize=True`.
     """
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+
+    if normalize:
+        cm = cm.astype(float)
+        cms = cms.astype(float)
+        ncm = cm
+        ncms = ncms
+        lines_sum = cm.sum(axis=1)
+        for i in range(cm.shape[0]):
+            for j in range(cm.shape[1]):
+                ncm[i,j] = cm[i,j] / lines_sum[i]
+                ncms[i,j] = cms[i,j] / lines_sum[i]
+    else:
+        ncm = cm
+        ncms = cms
+                              
+    plt.imshow(ncm, interpolation='nearest', cmap=cmap)
     plt.colorbar()
     tick_marks = np.arange(len(classes))
     plt.xticks(tick_marks, classes, rotation=45, fontsize = 20)
     plt.yticks(tick_marks, classes, fontsize = 20)
 
-    thresh = cm.max() / 2.
+    thresh = ncm.max() / 2.
 
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            plt.text(j, i, '{0:.2f}%'.format(cm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(cms[i, j]),
+                              
+    for i in range(ncm.shape[0]):
+        for j in range(ncm.shape[1]):
+            plt.text(j, i, '{0:.2f}%'.format(ncm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(ncms[i, j]),
                      horizontalalignment="center",
                      verticalalignment="center", fontsize=15,
-                     color="white" if cm[i, j] > thresh else "black")
+                     color="white" if ncm[i, j] > thresh else "black")
 
     plt.tight_layout()
 
