@@ -34,8 +34,8 @@ def plota_confusao(model,x, y, print):
     plt.tight_layout()
   return confusao, y_pred
 
-def plot_confusion_matrix(cm, cms,  classes,
-                          cmap=plt.cm.Blues, normalizar):
+def plot_confusion_matrix(cm, cms,  classes, normalizar,
+                          cmap=plt.cm.Blues):
     """
     This function prints and plots the confusion matrix.
     Normalization can be applied by setting `normalize=True`.
