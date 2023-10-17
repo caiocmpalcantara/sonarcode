@@ -51,6 +51,8 @@ def plot_confusion_matrix(cm, cms,  classes,
             for j in range(cm.shape[1]):
                 ncm[i,j] = cm[i,j] / lines_sum[i]
                 ncms[i,j] = cms[i,j] / lines_sum[i]
+        ncm = 100*ncm
+        ncms = 100*ncms
     else:
         ncm = cm
         ncms = cms
@@ -66,11 +68,16 @@ def plot_confusion_matrix(cm, cms,  classes,
                               
     for i in range(ncm.shape[0]):
         for j in range(ncm.shape[1]):
-            plt.text(j, i, '{0:.2f}%'.format(ncm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(ncms[i, j]),
+            if normalize:
+                print_str = '{0:.2f}%'.format(ncm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(ncms[i, j])
+            else:
+                print_str = '{0:.1f}'.format(ncm[i, j]) + '\n$\pm$' + '{0:.1f}'.format(ncms[i, j])
+                
+            plt.text(j, i, print_str,
                      horizontalalignment="center",
                      verticalalignment="center", fontsize=15,
                      color="white" if ncm[i, j] > thresh else "black")
-
+            
     plt.tight_layout()
 
     # plt.ylabel('Classe Verdadeira', fontsize = 25)
