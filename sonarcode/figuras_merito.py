@@ -52,7 +52,7 @@ def plot_confusion_matrix(cm, cms,  classes,
         for j in range(cm.shape[1]):
             plt.text(j, i, '{0:.2f}%'.format(cm[i, j]) + '\n$\pm$' + '{0:.2f}%'.format(cms[i, j]),
                      horizontalalignment="center",
-                     verticalalignment="center", fontsize=25,
+                     verticalalignment="center", fontsize=15,
                      color="white" if cm[i, j] > thresh else "black")
 
     plt.tight_layout()
