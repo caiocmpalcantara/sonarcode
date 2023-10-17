@@ -180,23 +180,26 @@ def evaluate_CM_and_SP_per_model_and_save(models_list, x, y_true, models_folder)
   # Confusion Matrix (CM) in values (without print), and the Sum-Product (SP)
   # per model in the 'models_list' and save the evaluated arrays containing the
   # CM and SP values in a 'models_folder'
-  print_cm = false
+  print_cm = False
 
   cm_per_model = []
   SP_per_model = []
-  
-  for model in models_list:
-    # Fist evaluate CM and SP per model
-    cm, y_pred = plota_confusao(lstm_model, x, y_true, print_cm)
-    SP = sp_index(y_true, y_pred)
-  
-    cm_per_model.append(cm)
-    SP_per_model.append(SP)
+
+  models_list_2 = models_list.reshape((10,9))
+  for i, (x_fold, y_fold) in enumerate(zip(x, y_true)):
+    print(i)
+    for model in models_list_2[i]:
+      # Fist evaluate CM and SP per model
+      cm, y_pred = plota_confusao(lstm_model, x_fold, y_fold, print_cm)
+      SP = sp_index(y_fold, y_pred)
+
+      cm_per_model.append(cm)
+      SP_per_model.append(SP)
 
   # Save for Models
-  save_name_cm = f'{model_folder}CM_per_model.npz'
-  save_name_SP = f'{model_folder}SP_per_model.npz'
-  
+  save_name_cm = f'{models_folder}CM_per_model.npz'
+  save_name_SP = f'{models_folder}SP_per_model.npz'
+
   np.savez(save_name_cm, *cm_per_model)
   np.savez(save_name_SP, *SP_per_model)
 
