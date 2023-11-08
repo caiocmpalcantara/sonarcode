@@ -6,7 +6,7 @@ from tensorflow.keras.optimizers import Adam
 #from tensorflow.keras.models import Input, Model, Sequential
 from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.layers import Input
-from keras.layers import LSTM, Dense, Dropout, Flatten, Reshape, Conv1D, Conv2D, Concatenate, Add
+from keras.layers import LSTM, Dense, Dropout, Flatten, Reshape, Conv1D, Conv2D, Concatenate, Add, Bidirectional
 #from keras.utils.vis_utils import plot_model
 from tensorflow.keras.utils import plot_model
 
