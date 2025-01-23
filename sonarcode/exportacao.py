@@ -8,12 +8,20 @@ from sonarcode.figuras_merito import sp_index, plota_confusao
 
 class Caminho:
   def __init__(self):
-    self.logs = "/gdrive/MyDrive/lps/goltz/resultados_marlon/logs/"
-    self.modelos =  "/gdrive/MyDrive/lps/goltz/resultados_marlon/modelos/"
-    self.curvas = "/gdrive/MyDrive/lps/goltz/resultados_marlon/curvas/"
-    self.history = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/"
-    self.his_obj = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/objeto/"
-    self.his_plan = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/planilha/"
+    # self.logs = "/gdrive/MyDrive/lps/goltz/resultados_marlon/logs/"
+    # self.modelos =  "/gdrive/MyDrive/lps/goltz/resultados_marlon/modelos/"
+    # self.curvas = "/gdrive/MyDrive/lps/goltz/resultados_marlon/curvas/"
+    # self.history = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/"
+    # self.his_obj = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/objeto/"
+    # self.his_plan = "/gdrive/MyDrive/lps/goltz/resultados_marlon/history/planilha/"
+    # D:\Documents\Python\Article_PassiveSonar
+    # d/Documents/Python/Article_PassiveSonar
+    self.logs = "/d/Documents/Python/Article_PassiveSonar/logs/"
+    self.modelos =  "/d/Documents/Python/Article_PassiveSonar/modelos/"
+    self.curvas = "/d/Documents/Python/Article_PassiveSonar/curvas/"
+    self.history = "/d/Documents/Python/Article_PassiveSonar/history/"
+    self.his_obj = "/d/Documents/Python/Article_PassiveSonar/history/objeto/"
+    self.his_plan = "/d/Documents/Python/Article_PassiveSonar/history/planilha/"
   
   def diretorio(self, caminho):
     if os.path.isdir(caminho):
